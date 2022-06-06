@@ -1,4 +1,4 @@
-﻿@model FootballAppUI.Models.TeamViewModel
+﻿@model List<FootballAppUI.Models.TeamViewModel>
 @{
     ViewData["Title"] = "Home Page";
 }
@@ -9,12 +9,12 @@
 </div>
 
 <div class="row">
-  <div class="col-sm-6">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">Create a Team</h5>
-        <p class="card-text">Create a new team, set their home venue and add players</p>
-        <a href="@Url.ActionLink("Teams", "Setup")" class="btn btn-primary">Add Team</a>
-      </div>
+    <div class="col-sm-6">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Create a Team</h5>
+                <p class="card-text">Create a new team, set their home venue and add players</p>
+                <a href="@Url.ActionLink("Teams", "Setup")" class="btn btn-primary">Add Team</a>
+            </div>
+        </div>
     </div>
-  </div>

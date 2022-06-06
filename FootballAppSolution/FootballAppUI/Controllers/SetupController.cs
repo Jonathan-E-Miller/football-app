@@ -5,6 +5,12 @@ namespace FootballAppUI.Controllers
 {
     public class SetupController : Controller
     {
+        List<TeamViewModel> teams = new List<TeamViewModel>()
+            {
+                new TeamViewModel() {Name="Huddersfield Town", Code = "HUD", VenueName="John Smiths Stadium"},
+                new TeamViewModel() {Name="Leeds United", Code = "LEE", VenueName="Elland Road"},
+                new TeamViewModel() {Name="Sheffield Wednesday", Code = "WED", VenueName="Hillsborough"}
+            };
         public IActionResult Index()
         {
             return View();
@@ -13,7 +19,8 @@ namespace FootballAppUI.Controllers
         [HttpGet]
         public ActionResult Teams()
         {
-            return View();
+          
+            return View(teams);
         }
 
 
@@ -23,7 +30,8 @@ namespace FootballAppUI.Controllers
         {
             if (ModelState.IsValid)
             {
-                return new StatusCodeResult(StatusCodes.Status200OK);
+                teams.Add(team);
+                return View("Teams", teams);
             }
             else
             {
