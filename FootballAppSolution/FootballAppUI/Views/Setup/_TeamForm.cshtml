@@ -1,0 +1,25 @@
+﻿@model FootballAppUI.Models.TeamViewModel
+@Html.AntiForgeryToken()
+<div class="form-group row pb-2">
+    @Html.LabelFor(m=>m.Name, new { @class="col-sm-2 col-form-label"})
+    <div class="col-sm-10">
+        @Html.TextBoxFor(m => m.Name, new { @class="form-control"})
+    </div>
+</div>
+@Html.ValidationMessageFor(m=>m.Name, "", new {@class="text-danger"})
+
+<div class="form-group row pb-2">
+    @Html.LabelFor(m=>m.VenueName, new { @class="col-sm-2 col-form-label"})
+    <div class="col-sm-10">
+        @Html.TextBoxFor(m => m.VenueName, new { @class="form-control"})
+    </div>
+</div>
+@Html.ValidationMessageFor(m=>m.VenueName, "", new {@class="text-danger"})
+
+<div class="form-group row pb-2">
+    @Html.LabelFor(m=>m.Code, new { @class="col-sm-2 col-form-label"})
+    <div class="col-sm-10">
+        @Html.TextBoxFor(m => m.Code, new { @class="form-control"})
+    </div>
+</div>
+@Html.ValidationMessageFor(m=>m.Code, "", new {@class="text-danger"})

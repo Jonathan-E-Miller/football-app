@@ -1,0 +1,37 @@
+﻿<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+    Create a new Team
+</button>
+
+<form asp-action="CreateTeam" asp-controller="Setup" data-ajax-method="POST" data-ajax="true" data-ajax-update="modal-body" data-ajax-complete="OnComplete">
+    <!-- Modal -->
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body" id="modal-body">
+                    <partial name="~/Views/Setup/_TeamForm.cshtml" model="@Model" />
+                </div>
+
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Add Team</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+@section Scripts{
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+    <script type="text/javascript">
+        function OnComplete() {
+            $("#staticBackdrop").modal("hide");
+        }
+    </script>
+}
