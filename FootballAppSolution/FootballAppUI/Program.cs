@@ -1,3 +1,5 @@
+using BusinessLogic;
+using Common.Interfaces;
 using Infastructure;
 using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
@@ -22,6 +24,7 @@ IConfiguration configuration = builder.Configuration;
 string connectionString = configuration.GetConnectionString("DefaultConnection");
 string connectionString1 = configuration["ConnectionStrings:DefaultConnection"];
 services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connectionString));
+services.AddScoped<ITeamController, TeamController>();
 
 var app = builder.Build();
 

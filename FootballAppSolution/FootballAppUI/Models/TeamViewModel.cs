@@ -1,8 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Common.Interfaces;
+using System.ComponentModel.DataAnnotations;
 
 namespace FootballAppUI.Models
 {
-    public class TeamViewModel
+    public class TeamViewModel : ITeam
     {
 
         [Display(Name = "Team")]
@@ -10,7 +11,7 @@ namespace FootballAppUI.Models
         public string Name { get; set; }
         
         [Display(Name = "Venue")]
-        public string VenueName { get; set; }
+        public string HomeGround { get; set; }
 
         [Display(Name = "Code")]
         [Required(ErrorMessage = "Code is required")]
@@ -24,7 +25,7 @@ namespace FootballAppUI.Models
         public TeamViewModel(string name, string venueName, string code)
         {
             Name = name;
-            VenueName = venueName;
+            HomeGround = venueName;
             Code = code;
         }    
     }

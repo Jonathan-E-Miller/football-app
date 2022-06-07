@@ -1,16 +1,18 @@
-﻿using FootballAppUI.Models;
+﻿using BusinessLogic;
+using Common.Interfaces;
+using FootballAppUI.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FootballAppUI.Controllers
 {
     public class SetupController : Controller
     {
-        List<TeamViewModel> teams = new List<TeamViewModel>()
-            {
-                new TeamViewModel() {Name="Huddersfield Town", Code = "HUD", VenueName="John Smiths Stadium"},
-                new TeamViewModel() {Name="Leeds United", Code = "LEE", VenueName="Elland Road"},
-                new TeamViewModel() {Name="Sheffield Wednesday", Code = "WED", VenueName="Hillsborough"}
-            };
+        ITeamController _teamController;
+        public SetupController(ITeamController controller)
+        {
+            _teamController = controller;
+        }
+
         public IActionResult Index()
         {
             return View();
@@ -19,19 +21,28 @@ namespace FootballAppUI.Controllers
         [HttpGet]
         public ActionResult Teams()
         {
-          
+            List<TeamViewModel> teams = new List<TeamViewModel>();
+            List<ITeam> storedTeams = _teamController.GetAllTeams();
+
+            storedTeams.ForEach(st => teams.Add(new TeamViewModel()
+            {
+                Name = st.Name,
+                Code = st.Code,
+                HomeGround = st.HomeGround
+            }));
+
             return View(teams);
         }
 
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CreateTeam(TeamViewModel team)
+        public async Task<ActionResult> CreateTeam(TeamViewModel team)
         {
             if (ModelState.IsValid)
             {
-                teams.Add(team);
-                return View("Teams", teams);
+                await _teamController.AddTeam(team);
+                return RedirectToAction("Teams");
             }
             else
             {

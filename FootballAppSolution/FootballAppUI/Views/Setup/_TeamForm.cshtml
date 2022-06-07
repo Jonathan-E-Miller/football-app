@@ -9,12 +9,12 @@
 @Html.ValidationMessageFor(m=>m.Name, "", new {@class="text-danger"})
 
 <div class="form-group row pb-2">
-    @Html.LabelFor(m=>m.VenueName, new { @class="col-sm-2 col-form-label"})
+    @Html.LabelFor(m=>m.HomeGround, new { @class="col-sm-2 col-form-label"})
     <div class="col-sm-10">
-        @Html.TextBoxFor(m => m.VenueName, new { @class="form-control"})
+        @Html.TextBoxFor(m => m.HomeGround, new { @class="form-control"})
     </div>
 </div>
-@Html.ValidationMessageFor(m=>m.VenueName, "", new {@class="text-danger"})
+@Html.ValidationMessageFor(m=>m.HomeGround, "", new {@class="text-danger"})
 
 <div class="form-group row pb-2">
     @Html.LabelFor(m=>m.Code, new { @class="col-sm-2 col-form-label"})
