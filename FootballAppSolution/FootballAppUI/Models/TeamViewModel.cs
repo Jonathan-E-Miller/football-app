@@ -22,7 +22,9 @@ namespace FootballAppUI.Models
 
         public TeamViewModel()
         {
-
+            Name = string.Empty;
+            HomeGround = string.Empty;
+            Code = string.Empty;
         }
 
         public TeamViewModel(string name, string venueName, string code)

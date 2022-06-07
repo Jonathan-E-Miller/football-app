@@ -42,7 +42,7 @@ namespace BusinessLogic
         {
             if (_applicationDbContext != null)
             {
-                Team toRemove = _applicationDbContext.Teams.Where(t => t.Code == team.Code).FirstOrDefault();
+                Team? toRemove = _applicationDbContext.Teams.Where(t => t.Code == team.Code).FirstOrDefault();
                 if (toRemove != null)
                 {
                     _applicationDbContext.Remove(toRemove);
@@ -53,36 +53,36 @@ namespace BusinessLogic
 
         public List<ITeam> GetAllTeams()
         {
+            List<ITeam> allTeams = new List<ITeam>();
             if (_applicationDbContext != null)
             {
-                List<ITeam> allTeams = new List<ITeam>();
-
                 foreach (Team team in _applicationDbContext.Teams)
                 {
                     allTeams.Add(team);
                 }
-
-                return allTeams;
             }
-            return null;
+
+            return allTeams;
         }
 
         public bool IsCodeAvailable(string code)
         {
+            bool available = true;
             if (_applicationDbContext.Teams.Any(t => t.Code == code))
             {
-                return false;
+                available = false;
             }
-            return true;
+            return available;
         }
 
         public bool IsTeamNameAvailable(string name)
         {
+            bool available = true;
             if (_applicationDbContext.Teams.Any(t => t.Name == name))
             {
-                return false;
+                available = false;
             }
-            return true;
+            return available;
         }
     }
 }
