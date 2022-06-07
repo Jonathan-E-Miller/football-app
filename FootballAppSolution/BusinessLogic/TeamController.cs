@@ -66,5 +66,23 @@ namespace BusinessLogic
             }
             return null;
         }
+
+        public bool IsCodeAvailable(string code)
+        {
+            if (_applicationDbContext.Teams.Any(t => t.Code == code))
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public bool IsTeamNameAvailable(string name)
+        {
+            if (_applicationDbContext.Teams.Any(t => t.Name == name))
+            {
+                return false;
+            }
+            return true;
+        }
     }
 }

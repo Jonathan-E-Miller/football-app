@@ -49,5 +49,17 @@ namespace FootballAppUI.Controllers
                 return View("Index");
             }
         }
+
+        [HttpGet]
+        public IActionResult IsCodeAvailable(string code)
+        {
+            return Json(_teamController.IsCodeAvailable(code));
+        }
+
+        [HttpGet]
+        public IActionResult IsTeamNameAvailable(string name)
+        {
+            return Json(_teamController.IsTeamNameAvailable(name));
+        }
     }
 }

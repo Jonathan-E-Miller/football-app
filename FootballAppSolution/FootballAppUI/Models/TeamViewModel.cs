@@ -1,4 +1,5 @@
 ﻿using Common.Interfaces;
+using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
 
 namespace FootballAppUI.Models
@@ -8,6 +9,7 @@ namespace FootballAppUI.Models
 
         [Display(Name = "Team")]
         [Required(ErrorMessage = "Team name is required")]
+        [Remote("IsTeamNameAvailable", "Setup", ErrorMessage = "Team name already exists")]
         public string Name { get; set; }
         
         [Display(Name = "Venue")]
@@ -15,6 +17,7 @@ namespace FootballAppUI.Models
 
         [Display(Name = "Code")]
         [Required(ErrorMessage = "Code is required")]
+        [Remote("IsCodeAvailable", "Setup", ErrorMessage = "Code Already Exist.")]
         public string Code { get; set; }
 
         public TeamViewModel()
