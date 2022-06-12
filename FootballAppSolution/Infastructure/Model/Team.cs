@@ -19,11 +19,14 @@ namespace Infastructure.Model
         public ICollection<Match> HomeMatches { get; set; }
         public ICollection<Match> AwayMatches { get; set; }
 
+        public ICollection<Player> Players { get; set; }
+
+        public ICollection<Season> Seasons { get; set; }
+
         public Team()
         {
             HomeMatches = new List<Match>();
             AwayMatches = new List<Match>();
         }
-
     }
 }

@@ -1,0 +1,61 @@
+﻿@model FootballAppUI.Models.ModalViewModel
+<form asp-action="@Model.PostAction" asp-controller="@Model.PostController" data-ajax-method="POST" data-ajax="true" data-ajax-update="modal-body" data-ajax-complete="OnComplete">
+    @Html.AntiForgeryToken()
+    <!-- Modal -->
+    <div class="modal fade" id="@Model.Id" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">@Model.Title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id=@(Model.Id+"bodyHolder")>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Add Team</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+
+    <script type="text/javascript">
+        function OnComplete() 
+        {
+            var Id = '#' + '@Model.Id';
+            $(Id).modal("hide");
+        }
+
+        function GetForm() 
+        {
+            var serviceUrl = '@Model.ContentUrl'
+            var locator = '@Model.Id' + 'bodyHolder';
+            console.log(serviceUrl);
+            console.log(locator);
+
+            $.ajax({
+                type: "GET",
+                contentType: 'application/html; charset=utf-8',
+                url: serviceUrl,
+                dataType: 'html',
+                success: successFunc,
+                error: errorFunc
+            });
+
+            function successFunc(response) {
+                var Id = '#' + locator;
+                console.log("Looking for " + Id);
+                $(Id).html(response);
+                // we need to add the newly added DOM element to unobstrusive validation.
+                $.validator.unobtrusive.parse(Id);
+            }
+
+            function errorFunc() {
+                alert('error');
+            }
+        }
+    </script>

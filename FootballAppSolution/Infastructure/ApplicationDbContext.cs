@@ -14,10 +14,13 @@ namespace Infastructure
         {
             
         }
-
+        public DbSet<League> Leagues { get; set; }
         public DbSet<Team> Teams { get; set; }
         public DbSet<Match> Matches { get; set; }
         public DbSet<Round> Rounds { get; set; }
+        public DbSet<Season> Seasons { get; set; }
+        public DbSet<Player> Players { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

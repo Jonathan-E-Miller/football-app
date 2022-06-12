@@ -19,5 +19,8 @@ namespace Infastructure.Model
         public Team AwayTeam { get; set; }
         public int HomeGoals { get; set; }
         public int AwayGoals { get; set; }
+
+        public int RoundId { get; set; }
+        public Round Round { get; set; }
     }
 }

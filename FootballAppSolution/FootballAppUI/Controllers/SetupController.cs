@@ -34,6 +34,12 @@ namespace FootballAppUI.Controllers
             return View(teams);
         }
 
+        [HttpGet]
+        public ActionResult League()
+        {
+            return View();
+        }
+
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -60,6 +66,12 @@ namespace FootballAppUI.Controllers
         public IActionResult IsTeamNameAvailable(string name)
         {
             return Json(_teamController.IsTeamNameAvailable(name));
+        }
+
+        [HttpGet]
+        public IActionResult GetTeamInputForm()
+        {
+            return PartialView("_TeamForm", new TeamViewModel());
         }
     }
 }
