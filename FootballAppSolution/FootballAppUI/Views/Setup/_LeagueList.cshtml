@@ -1,0 +1,18 @@
+﻿@model List<LeagueViewModel>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">League Name</th>
+                <th scope="col">Founded</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (LeagueViewModel team in Model)
+            {
+                <tr>
+                    <th scope="row">@team.Name</th>
+                    <td>@team.Founded.ToString("yyyy")</td>
+                </tr>
+            }
+        </tbody>
+    </table>

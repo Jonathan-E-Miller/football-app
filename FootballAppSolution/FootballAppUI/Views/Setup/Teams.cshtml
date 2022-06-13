@@ -1,0 +1,19 @@
+﻿@model List<TeamViewModel>
+
+
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newTeamModal" onclick="GetForm()">
+    Create a new Team
+</button>
+
+@await Html.PartialAsync("_FormModal", new ModalViewModel()
+{
+    Id = "newTeamModal",
+    PostAction = "CreateTeam",
+    PostController = "Setup",
+    Title = "Create a Team",
+    ContentUrl = Url.ActionLink("GetTeamInputForm", "Setup"),
+    PostButtonText = "Create Team"
+})
+
+
+@await Html.PartialAsync("_TeamList", Model)

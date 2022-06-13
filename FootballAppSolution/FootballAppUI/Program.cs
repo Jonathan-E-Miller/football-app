@@ -1,3 +1,5 @@
+using BusinessLogic;
+using Common.Interfaces;
 using Infastructure;
 using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
@@ -22,6 +24,7 @@ IConfiguration configuration = builder.Configuration;
 string connectionString = configuration.GetConnectionString("DefaultConnection");
 string connectionString1 = configuration["ConnectionStrings:DefaultConnection"];
 services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connectionString));
+AddDependencies(services);
 
 var app = builder.Build();
 
@@ -45,3 +48,9 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
+
+void AddDependencies(IServiceCollection services)
+{
+    services.AddScoped<ITeamController, TeamController>();
+    services.AddScoped<ILeagueService, LeagueService>();
+}

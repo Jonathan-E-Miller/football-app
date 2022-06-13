@@ -1,0 +1,32 @@
+﻿@model List<TeamViewModel>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Team</th>
+            <th scope="col">Home Venue</th>
+            <th scope="col">Code</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (TeamViewModel team in Model)
+        {
+            <tr>
+                <th scope="row">@team.Name</th>
+                <td>@team.HomeGround</td>
+                <td>@team.Code</td>
+                <td>
+                    @{
+                        string divId = team.Code + "config";
+                    }
+                    <div id="@divId">
+                        <span style="color: lightblue;">
+                            <i class="fa-solid fa-futbol" title="Configure">
+                            </i>
+                        </span>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

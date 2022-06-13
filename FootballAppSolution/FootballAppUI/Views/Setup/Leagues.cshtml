@@ -1,0 +1,17 @@
+﻿@model List<LeagueViewModel>
+
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newLeagueModal" onclick="GetForm()">
+    Create a new League
+</button>
+
+@await Html.PartialAsync("_FormModal", new ModalViewModel()
+{
+    Id = "newLeagueModal",
+    PostAction = "CreateLeague",
+    PostController = "Setup",
+    Title = "Create a League",
+    ContentUrl = Url.ActionLink("GetCreateLeagueForm", "Setup"),
+    PostButtonText = "Create League"
+})
+
+@await Html.PartialAsync("_LeagueList", Model)
