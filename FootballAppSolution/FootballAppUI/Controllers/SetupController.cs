@@ -7,10 +7,13 @@ namespace FootballAppUI.Controllers
 {
     public class SetupController : Controller
     {
-        ITeamController _teamController;
-        public SetupController(ITeamController controller)
+        private ITeamController _teamController;
+        private ILeagueService _leagueService;
+
+        public SetupController(ITeamController controller, ILeagueService leagueService)
         {
             _teamController = controller;
+            _leagueService = leagueService;
         }
 
         public IActionResult Index()
@@ -35,9 +38,20 @@ namespace FootballAppUI.Controllers
         }
 
         [HttpGet]
-        public ActionResult League()
+        public ActionResult Leagues()
         {
-            return View();
+            List<LeagueViewModel> leagues = new List<LeagueViewModel>();
+            IEnumerable<ILeague> storedLeagues = _leagueService.GetAllLeagues();
+
+            List<LeagueViewModel> viewModel = new List<LeagueViewModel>();
+            storedLeagues.ToList().ForEach(sl => viewModel.Add(
+                new LeagueViewModel()
+                {
+                    Name = sl.Name,
+                    Founded = sl.Founded
+                }));
+
+            return View(viewModel);
         }
 
 
@@ -49,6 +63,21 @@ namespace FootballAppUI.Controllers
             {
                 await _teamController.AddTeam(team);
                 return RedirectToAction("Teams");
+            }
+            else
+            {
+                return View("Index");
+            }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> CreateLeague(LeagueViewModel league)
+        {
+            if (ModelState.IsValid)
+            {
+                await _leagueService.AddLeagueAsync(league);
+                return RedirectToAction("Leagues");
             }
             else
             {
@@ -72,6 +101,12 @@ namespace FootballAppUI.Controllers
         public IActionResult GetTeamInputForm()
         {
             return PartialView("_TeamForm", new TeamViewModel());
+        }
+
+        [HttpGet]
+        public IActionResult GetCreateLeagueForm()
+        {
+            return PartialView("_LeagueForm", new LeagueViewModel());
         }
     }
 }

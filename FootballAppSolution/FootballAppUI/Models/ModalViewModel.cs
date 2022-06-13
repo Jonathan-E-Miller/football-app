@@ -7,5 +7,6 @@
         public string Title { get; set; }
         public string PostController { get; set; }
         public string PostAction { get; set; }
+        public string PostButtonText { get; set; }
     }
 }

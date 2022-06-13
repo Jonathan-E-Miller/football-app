@@ -14,7 +14,13 @@ namespace Infastructure.Model
         public ICollection<Match> Matches { get; set; }
 
         public int SeasonId { get; set; }
-        public Season Season { get; set; }
+        private Season? _season;
+        public Season Season
+        {
+            set => _season = value;
+            get => _season
+                   ?? throw new InvalidOperationException("Uninitialized property: " + nameof(Season));
+        }
 
         public Round()
         {
