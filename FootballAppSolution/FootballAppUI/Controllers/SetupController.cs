@@ -108,5 +108,11 @@ namespace FootballAppUI.Controllers
         {
             return PartialView("_LeagueForm", new LeagueViewModel());
         }
+
+        [HttpGet]
+        public IActionResult Seasons()
+        {
+            return View();
+        }
     }
 }
