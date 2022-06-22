@@ -12,6 +12,24 @@
             font-family: Arial, Helvetica, sans-serif;
         }
 
+        .left-half {
+            background-color: #ff9e2c;
+            flex: 1;
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .right-half {
+            background-color: #b6701e;
+            flex: 1;
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
         /* The Modal (background) */
         .modal-jm {
             display: none; /* Hidden by default */
@@ -36,6 +54,7 @@
             border-radius: 25px;
             width: 80%;
             align-content: center;
+            display: flex;
         }
 
         /* The Close Button */
@@ -98,13 +117,17 @@
 
     <!-- Modal content -->
     <div class="modal-content-jm">
-        <span class="close-jm">&times;</span>
-        <p>Some text in the Modal..</p>
-        <h1>Some more text</h1>
-        <ul>
-            <li>Hello</li>
-            <li>World</li>
-        </ul>
+        <div class="left-half">
+            <p>Some text in the Modal..</p>
+            <h1>Some more text</h1>
+        </div>
+        <div class="right-half">
+            <ul>
+                <li>Hello</li>
+                <li>World</li>
+            </ul>
+        </div>
+        <span class="close-jm p-2">&times;</span>
     </div>
 </div>
 
