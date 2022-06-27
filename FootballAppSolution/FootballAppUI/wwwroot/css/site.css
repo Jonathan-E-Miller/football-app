@@ -1,4 +1,4 @@
-html {
+/*html {
     font-size: 14px;
 }
 
@@ -15,33 +15,33 @@ html {
 
 body {
     margin-bottom: 60px;
-}
+}*/
 
 /* Tooltip container */
-.tooltip {
+/*.tooltip {
     position: relative;
     display: inline-block;
-}
+}*/
 
     /* Tooltip text */
-    .tooltip .tooltiptext {
+    /*.tooltip .tooltiptext {
         visibility: hidden;
         width: 120px;
         background-color: black;
         color: #fff;
         text-align: center;
         padding: 5px 0;
-        border-radius: 6px;
+        border-radius: 6px;*/
         /* Position the tooltip text */
-        position: absolute;
+        /*position: absolute;
         z-index: 1;
         bottom: 100%;
         left: 50%;
-        margin-left: -60px; /* Use half of the width (120/2 = 60), to center the tooltip */
-    }
+        margin-left: -60px;*/ /* Use half of the width (120/2 = 60), to center the tooltip */
+    /*}*/
 
     /* Show the tooltip text when you mouse over the tooltip container */
-    .tooltip:hover .tooltiptext {
+    /*.tooltip:hover .tooltiptext {
         visibility: visible;
     }
 
@@ -63,25 +63,25 @@ body {
     padding: 1rem;
     flex-direction: column;
     justify-content: center;
-}
+}*/
 
 /* The Modal (background) */
-.modal-jm {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    padding-top: 100px; /* Location of the box */
-    left: 0;
+/*.modal-jm {
+    display: none;*/ /* Hidden by default */
+    /*position: fixed;*/ /* Stay in place */
+    /*z-index: 1;*/ /* Sit on top */
+    /*padding-top: 100px;*/ /* Location of the box */
+    /*left: 0;
     top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-}
+    width: 100%;*/ /* Full width */
+    /*height: 100%;*/ /* Full height */
+    /*overflow: auto;*/ /* Enable scroll if needed */
+    /*background-color: rgb(0,0,0);*/ /* Fallback color */
+    /*background-color: rgba(0,0,0,0.4);*/ /* Black w/ opacity */
+/*}*/
 
 /* Modal Content */
-.modal-content-jm {
+/*.modal-content-jm {
     background-color: #fefefe;
     margin: auto;
     padding: 20px;
@@ -90,10 +90,10 @@ body {
     width: 80%;
     align-content: center;
     display: flex;
-}
+}*/
 
 /* The Close Button */
-.close-jm {
+/*.close-jm {
     color: #aaaaaa;
     float: right;
     font-size: 28px;
@@ -105,4 +105,4 @@ body {
         color: #000;
         text-decoration: none;
         cursor: pointer;
-    }
+    }*/
