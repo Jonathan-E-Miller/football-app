@@ -4,11 +4,11 @@ using Infastructure.Model;
 
 namespace BusinessLogic
 {
-    public class TeamController : ITeamController
+    public class TeamService : ITeamService
     {
         private ApplicationDbContext _applicationDbContext;
 
-        public TeamController(ApplicationDbContext applicationDb) 
+        public TeamService(ApplicationDbContext applicationDb) 
         {
             _applicationDbContext = applicationDb;
         }

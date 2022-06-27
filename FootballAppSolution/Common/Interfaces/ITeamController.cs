@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Common.Interfaces
 {
-    public interface ITeamController
+    public interface ITeamService
     {
         public List<IPlayer> Players { get; set; }
         public Task AddTeam(ITeam team);

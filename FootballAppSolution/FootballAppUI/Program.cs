@@ -51,6 +51,6 @@ app.Run();
 
 void AddDependencies(IServiceCollection services)
 {
-    services.AddScoped<ITeamController, TeamController>();
+    services.AddScoped<ITeamService, TeamService>();
     services.AddScoped<ILeagueService, LeagueService>();
 }

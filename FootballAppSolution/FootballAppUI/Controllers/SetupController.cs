@@ -7,12 +7,12 @@ namespace FootballAppUI.Controllers
 {
     public class SetupController : Controller
     {
-        private ITeamController _teamController;
+        private ITeamService _teamService;
         private ILeagueService _leagueService;
 
-        public SetupController(ITeamController controller, ILeagueService leagueService)
+        public SetupController(ITeamService teamService, ILeagueService leagueService)
         {
-            _teamController = controller;
+            _teamService = teamService;
             _leagueService = leagueService;
         }
 
@@ -25,7 +25,7 @@ namespace FootballAppUI.Controllers
         public ActionResult Teams()
         {
             List<TeamViewModel> teams = new List<TeamViewModel>();
-            List<ITeam> storedTeams = _teamController.GetAllTeams();
+            List<ITeam> storedTeams = _teamService.GetAllTeams();
 
             storedTeams.ForEach(st => teams.Add(new TeamViewModel()
             {
@@ -61,7 +61,7 @@ namespace FootballAppUI.Controllers
         {
             if (ModelState.IsValid)
             {
-                await _teamController.AddTeam(team);
+                await _teamService.AddTeam(team);
                 return RedirectToAction("Teams");
             }
             else
@@ -88,13 +88,13 @@ namespace FootballAppUI.Controllers
         [HttpGet]
         public IActionResult IsCodeAvailable(string code)
         {
-            return Json(_teamController.IsCodeAvailable(code));
+            return Json(_teamService.IsCodeAvailable(code));
         }
 
         [HttpGet]
         public IActionResult IsTeamNameAvailable(string name)
         {
-            return Json(_teamController.IsTeamNameAvailable(name));
+            return Json(_teamService.IsTeamNameAvailable(name));
         }
 
         [HttpGet]
