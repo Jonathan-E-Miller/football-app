@@ -1,4 +1,5 @@
-﻿using BusinessLogic;
+﻿using System.Linq;
+using BusinessLogic;
 using Common.Interfaces;
 using FootballAppUI.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -112,7 +113,33 @@ namespace FootballAppUI.Controllers
         [HttpGet]
         public IActionResult Seasons()
         {
-            return View();
+            var leagues = _leagueService.GetAllLeagues();
+            var teams = _teamService.GetAllTeams();
+
+            List<LeagueViewModel> leagueVmList = new List<LeagueViewModel>();
+
+            leagues.ToList().ForEach(x => leagueVmList.Add(new LeagueViewModel()
+            {
+                Name = x.Name,
+                Founded = x.Founded
+            }));
+
+            Dictionary<TeamViewModel, bool> teamVmList = new Dictionary<TeamViewModel, bool>();
+            teams.ForEach(t => teamVmList.Add(new TeamViewModel()
+            {
+                Name = t.Name,
+                Code = t.Code,
+                HomeGround = t.HomeGround
+            }, false));
+
+            SeasonViewModel vm = new SeasonViewModel()
+            {
+                Leagues = leagueVmList,
+                SelectedTeams = teamVmList,
+                SelectedLeague = leagueVmList.ElementAt(0)
+            };
+
+            return View(vm);
         }
     }
 }

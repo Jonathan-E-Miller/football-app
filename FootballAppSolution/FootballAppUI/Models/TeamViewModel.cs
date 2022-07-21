@@ -32,6 +32,11 @@ namespace FootballAppUI.Models
             Name = name;
             HomeGround = venueName;
             Code = code;
-        }    
+        }
+
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }
